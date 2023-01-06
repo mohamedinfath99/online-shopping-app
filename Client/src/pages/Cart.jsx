@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import Announcement from '../components/Announcement';
 import Footer from "../components/Footer"
 import { Add, Remove } from '@material-ui/icons';
+import {mobile} from '../Responsive'
 
 
 const Contanier = styled.div`
@@ -12,6 +13,9 @@ const Contanier = styled.div`
 
 const Warapper = styled.div`
     padding: 20px;
+
+
+    ${mobile({padding: "10px"})}
 `
 
 const Title = styled.h1`
@@ -37,6 +41,9 @@ const TopButton = styled.button`
 `
 
 const TopTexts = styled.div`
+
+
+    ${mobile({display: "none"})}
     
 `
 
@@ -49,10 +56,16 @@ const TopText = styled.span`
 const Bottem = styled.div`
     display: flex;
     justify-content: space-between;
+
+
+    ${mobile({flexDirection: "column"})}
 `
 
 const Info = styled.div`
     flex: 3;
+
+
+    ${mobile({flexDirection: "column"})}
 `
 
 
@@ -60,6 +73,8 @@ const Product = styled.div`
     display: flex;
     justify-content: space-between;
     
+
+    ${mobile({flexDirection: "column"})}
 `
 
 
@@ -71,6 +86,9 @@ const ProductDetail = styled.div`
 
 const Image = styled.img`
     width: 200px;
+
+
+    ${mobile({width: "180px"})}
 
 `
 
