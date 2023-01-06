@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@material-ui/icons';
 import { useState } from 'react';
 import {sliderItems} from '../data'
+import {mobile} from '../Responsive'
 
 
 const Container = styled.div`
@@ -12,6 +13,8 @@ const Container = styled.div`
     position: relative;
 
     overflow: hidden;
+
+    ${mobile({display: "none"})}
 `
 
 const Arrow = styled.div`
@@ -35,7 +38,7 @@ const Arrow = styled.div`
     cursor: pointer;
     opacity: 0.5;
 
-
+    /* Arrow base Code */
     z-index: 2;
 `
 
@@ -45,7 +48,6 @@ const Warapper = styled.div`
 
     /* slide change code */
     transform: translateX(${props => props.slideIndex * -100}vw);
-
     transition: all 1.5s ease;
 `
 
@@ -96,6 +98,7 @@ const Button = styled.button`
 
 const Slider = () => {
 
+    // Slider Index
     const [slideIndex, setSlideIndex] = useState(0)
 
 
@@ -119,15 +122,15 @@ const Slider = () => {
             <Warapper slideIndex={slideIndex}>
 
                 {sliderItems.map(item => (
-                    <Slide>
+                    <Slide key={item.id}>
                         <ImgContainer>
-                            <Image src={item.img} />
+                            <Image src={item.img}  />
                         </ImgContainer>
 
                         <InfoContainer>
                             <Title>{item.title}</Title>
                             <Desc>{item.desc}</Desc>
-                            <Button>SHOW NOW</Button>
+                            <Button>SHOP NOW</Button>
                         </InfoContainer>
                     </Slide>
                 ))}
