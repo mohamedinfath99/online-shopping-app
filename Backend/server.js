@@ -1,42 +1,46 @@
-import app from './app.js'
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
+const express = require("express");
+const cors = require("cors");
+const cookieParser = require('cookie-parser')
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+
+const userRoute = require("./routes/user");
+const authRoute = require("./routes/auth");
+const productRoute = require("./routes/product");
+const cartRoute = require("./routes/cart");
+const orderRoute = require("./routes/order");
+
+
+
+
+const app = express();
+
 
 dotenv.config();
-mongoose.set('strictQuery', true);
+mongoose.set('strictQuery', true)
 
 
-
-const DB = process.env.DATABASE.replace(
-    '<PASSWORD>',
-    process.env.DATABASE_PASSWORD
-)
-
-
-const connect = async () => {
-    try {
-        await mongoose.connect(DB);
-        console.log("Database is connected!");
-    } 
-    catch (error) {
-        throw(error);
-    }
-}
-
-
-
-mongoose.connection.on("Disconnected", () => {
-    console.log("MongoDB is Disconnected");
-});
-
-mongoose.connection.on("connected", () => {
-    console.log("MongoDB is connected");
+mongoose
+.connect(process.env.MONGO_URL)
+.then(() => console.log("DB Connection Successfull!"))
+.catch((err) => {
+  console.log(err);
 });
 
 
+app.use(cookieParser())
+app.use(cors());
+app.use(express.json());
 
-const port = 5000
-app.listen(port, () => {
-    connect()
-    console.log("Backend server is running!");
-})
+
+app.use("/api/auth", authRoute);
+app.use("/api/users", userRoute);
+app.use("/api/products", productRoute);
+app.use("/api/carts", cartRoute);
+app.use("/api/orders", orderRoute);
+
+
+
+app.listen(process.env.PORT || 5000, () => {
+  console.log("Backend server is running!");
+});

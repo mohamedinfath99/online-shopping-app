@@ -11,7 +11,7 @@ import Cart from "./pages/Cart";
 function App() {
   return (
     <div>
-      <Home/>
+      <Register/>
     </div>
   );
 }

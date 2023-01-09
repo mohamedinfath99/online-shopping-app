@@ -1,28 +1,28 @@
-import mongoose from 'mongoose';
+const mongoose = require("mongoose");
 
 
 const ProductSchema = new mongoose.Schema({
     title: {
-        type: string,
+        type: String,
         required : [true, "Title is must"],
         unique : true,
     },
     desc: {
-        type: string,
+        type: String,
         required : true,
     },
     img: {
-        type: string,
+        type: String,
         required : [true, "Image is must"],
     },
     categories: {
         type: {type: Array}
     },
     size: {
-        type: string
+        type: String
     },
     color: {
-        type: string
+        type: String
     },
     price: {
         type: Number,
