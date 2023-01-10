@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
 
 
 const OrderSchema = new mongoose.Schema({
@@ -29,9 +29,9 @@ const OrderSchema = new mongoose.Schema({
         type: String,
         default: "pending"
     }
-}, { timestamps: true })
+}, { timestamps: true });
 
 
-const Order = mongoose.model('Order', OrderSchema)
+const Order = mongoose.model('Order', OrderSchema);
 
-module.exports = Order
+export default Order;
