@@ -12,7 +12,7 @@ import Pay from "./pages/Pay";
 function App() {
   return (
     <div>
-      <Pay/>
+      <Register/>
     </div>
   );
 }

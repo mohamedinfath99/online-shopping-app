@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
-import { useHistory } from 'react-router'
+
+
 
 
 const Container = styled.div`
@@ -24,12 +25,13 @@ const Button = styled.button`
     cursor: pointer;
 `
 
-const KEY = "pk_test_51MOZjOHkI6ohd0XnJPN215U2qTDNEpUTHQoQUJMHLrErGJyHg89uy71MyuHiifWKcW9O1LHNeubVCqB3PmtRwhhk00CLfNX3Z6"
+
+const KEY = process.env.REACT_APP_STRIPE;
+console.log(KEY);
 
 const Pay = () => {
 
     const [stripeToken, setStripeToken] = useState(null);
-    const history = useHistory()
 
     const onToken = (token) => {
         setStripeToken(token)
@@ -43,13 +45,12 @@ const Pay = () => {
                     amount: 2000
                 })
                 console.log(res.data);
-                history.push('/success')
             } catch (err) {
                 console.log(err);
             }
         };
         stripeToken && (() => makeRequest)();
-    }, [stripeToken, history])
+    }, [stripeToken])
 
 
     return (
